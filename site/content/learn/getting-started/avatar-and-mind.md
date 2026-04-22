@@ -1,0 +1,1 @@
+../../../../learn/1-getting-started/1.3-avatar-and-mind.md
