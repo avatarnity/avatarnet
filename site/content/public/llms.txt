@@ -1,0 +1,24 @@
+# Avatarnet
+
+> A post-quantum and decentralized network for digital immortality. Avatarnet preserves human knowledge as permanent, cryptographically signed, interactive records hosted on a peer-to-peer network no single company controls.
+
+Avatarnet is a free and open-source protocol (AGPL-3.0). Identity is anchored by quantum-resistant SLH-DSA keypairs (FIPS 205). Every piece of content is hashed with SHA-512, signed, and linked into a Merkle DAG. Data replicates across a peer-to-peer network using Kademlia DHT so that no single point of failure can erase what someone chose to preserve.
+
+The protocol separates two concepts: the Avatar (a cryptographic identity, the ".avtr" domain name, and the keypair that proves ownership) and the Mind (everything a person writes, structured as browsable knowledge that an AI can cite). On today's internet you visit websites. On Avatarnet you visit avatars.
+
+## Getting Started
+
+- [Introduction](https://avatarnet.org/learn/getting-started/beginners-guide.html): What Avatarnet is, the timeline of knowledge preservation from cave paintings to avatars, and how avatars continue humanity's oldest tradition
+- [Why It Matters](https://avatarnet.org/learn/getting-started/why-it-matters.html): Why your digital life is scattered across platforms, fragile by design, and built to disappear through Big Tech deletion policies and historical purges
+- [Avatar + Mind = You](https://avatarnet.org/learn/getting-started/avatar-and-mind.html): The two core concepts at the heart of Avatarnet, your Avatar as a cryptographic identity and your Mind as structured knowledge, and the four pillars that protect them
+
+## Cryptography
+
+- [Encoding Primer](https://avatarnet.org/learn/cryptography/encoding-primer.html): How binary data is represented as text using Base16, Base58, and Base64, and why each encoding exists
+- [Post-Quantum Cryptography](https://avatarnet.org/learn/cryptography/post-quantum-cryptography.html): Why classical algorithms like Ed25519 are vulnerable to quantum computers, what NIST did about it, and why Avatarnet chose SLH-DSA and ML-KEM
+- [Key and Hash Sizes](https://avatarnet.org/learn/cryptography/key-and-hash-sizes.html): The exact byte sizes for every key, hash, signature, and ciphertext in the protocol, organized by the four security pillars
+- [Signing and Encryption](https://avatarnet.org/learn/cryptography/signing-and-encryption.html): How SLH-DSA hash-based signing, SHA-512 content addressing, AES-256-GCM encryption, ML-KEM key encapsulation, and Argon2id key derivation work in practice
+
+## Optional
+
+- [Spec (Coming Soon)](https://avatarnet.org/spec/index.html): The formal protocol specification covering identity, content, naming, networking, transport, and economics

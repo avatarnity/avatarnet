@@ -1,3 +1,4 @@
+import '@rspress/core/dist/theme/components/HomeFeature/index.css';
 import type { Feature } from '@rspress/core';
 import { useFrontmatter } from '@rspress/core/runtime';
 import {

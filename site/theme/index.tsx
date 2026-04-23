@@ -1,4 +1,5 @@
 import './index.css';
+import '@rspress/core/dist/theme/layout/NotFountLayout/index.css';
 import { useEffect } from 'react';
 import { Layout as OriginalLayout } from '@rspress/core/theme-original';
 import { CalendarProvider, useCalendar } from './CalendarContext';
