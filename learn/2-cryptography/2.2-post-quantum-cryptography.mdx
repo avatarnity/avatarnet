@@ -19,15 +19,13 @@ That assumption held for decades. It will not hold forever.
 
 ## Why Classical Cryptography Dies
 
-In 1994, mathematician Peter Shor published an algorithm that solves the Elliptic Curve Discrete Logarithm Problem exponentially faster than any classical approach. The catch was that it requires a quantum computer, a machine that did not exist in any practical form at the time. For thirty years, that catch was enough. Quantum hardware was too fragile, too error-prone, and too small to run Shor's algorithm on real cryptographic keys.
-
-That gap is closing.
+In 1994, mathematician Peter Shor published an algorithm that solves the Elliptic Curve Discrete Logarithm Problem exponentially faster than any classical approach. The catch was that it requires a quantum computer, a machine that did not exist in any practical form at the time. For thirty years, that catch was enough. Quantum hardware was too fragile, too error-prone, and too small to run Shor's algorithm on real cryptographic keys. That gap is now closing.
 
 On March 31, <HDate g={2026} />, Google Quantum AI published a paper demonstrating that breaking the elliptic curve cryptography protecting Bitcoin, Ethereum, and most major cryptocurrencies could require fewer than 500,000 physical qubits on a superconducting quantum computer. That estimate is roughly twenty times lower than prior research had suggested. The paper carries serious institutional weight: its co-authors include Justin Drake of the Ethereum Foundation, Dan Boneh of Stanford, and six Google Quantum AI researchers. Google says it engaged with the United States government before publishing.
 
 No quantum computer can execute this attack today. Google's most advanced chip, Willow, has 105 qubits. But the distance between current hardware and a machine capable of cracking elliptic curve cryptography is shrinking faster than projected. The paper estimates that a superconducting quantum computer could complete the attack in approximately nine minutes, using a technique where the machine precomputes half the algorithm and waits in a primed state until a target appears.
 
-Every system that relies on elliptic curve cryptography now has a visible horizon. Ed25519, ECDSA, and RSA are all vulnerable to Shor's algorithm. The question is not whether they will be broken, but when.
+Every system that relies on elliptic curve cryptography now has a visible horizon, because Ed25519, ECDSA, and RSA are all vulnerable to Shor's algorithm. It is not a question of whether they will be broken, but when.
 
 ## The NIST Response
 

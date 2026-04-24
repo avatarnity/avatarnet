@@ -63,6 +63,17 @@ body {
   font-weight: 500;
 }
 
+/* Hero brand name — slightly larger than default */
+.rp-home-hero__title-brand {
+  font-size: 4.5rem;
+}
+
+@media (max-width: 600px) {
+  .rp-home-hero__title-brand {
+    font-size: 3rem;
+  }
+}
+
 /* Quicksand — headings, nav, hero, card titles, sidebar */
 h1, h2, h3, h4, h5, h6,
 .rp-home-hero__title,
@@ -451,6 +462,18 @@ h1, h2, h3, h4, h5, h6,
 .rp-doc a:hover {
   opacity: 1 !important;
   border-image-width: 0 0 1.5px 0;
+}
+
+/* External link ↗ arrow — restore visibility (the .rp-doc a gradient-text
+   above clips text to background, which makes Rspress's :after arrow render
+   as transparent/gradient-clipped). Force a solid brand-magenta fill so the
+   arrow shows, and let Rspress core's transition handle the slide animation. */
+.rp-doc a.rp-link[target="_blank"]:after {
+  -webkit-text-fill-color: var(--av-gradient-to);
+  color: var(--av-gradient-to);
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
 }
 
 
@@ -912,13 +935,38 @@ h1, h2, h3, h4, h5, h6,
   font-size: 0.8rem;
   color: #4a4960;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-  white-space: nowrap;
+  max-width: 280px;
 }
 
 .av-dc-tooltip strong {
   color: #020817;
   font-family: 'Quicksand', sans-serif;
   font-size: 0.85rem;
+}
+
+.av-dc-tooltip-source {
+  margin-top: 2px;
+  opacity: 0.75;
+  font-size: 0.75rem;
+}
+
+.av-dc-tooltip-note {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px dashed rgba(102, 69, 235, 0.25);
+  font-size: 0.72rem;
+  font-style: italic;
+  white-space: normal;
+  line-height: 1.35;
+  opacity: 0.85;
+}
+
+.av-dc-info {
+  cursor: help;
+  color: #D445EB;
+  margin-left: 2px;
+  font-style: normal;
+  opacity: 1;
 }
 
 .dark .av-dc-tooltip {
@@ -930,6 +978,10 @@ h1, h2, h3, h4, h5, h6,
 
 .dark .av-dc-tooltip strong {
   color: #fff;
+}
+
+.dark .av-dc-tooltip-note {
+  border-top-color: rgba(102, 69, 235, 0.35);
 }
 
 .av-dc-legend {
@@ -1121,5 +1173,69 @@ h1, h2, h3, h4, h5, h6,
     padding: .5rem .75rem;
     font-size: .8rem;
   }
+}
+
+/* Calendar toggle — mobile / tablet (mirrors NavScreenLangs pattern) */
+.av-calendar-mobile-wrapper {
+  width: 100%;
+}
+
+.av-calendar-screen {
+  border-radius: var(--rp-radius-small);
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 14px;
+  display: flex;
+  cursor: pointer;
+}
+
+.av-calendar-screen__left {
+  align-items: center;
+  display: flex;
+}
+
+.av-calendar-screen__right {
+  align-items: center;
+  gap: 4px;
+  display: flex;
+}
+
+.av-calendar-screen__icon {
+  transition: transform .3s;
+  transform: rotate(-90deg);
+}
+
+.av-calendar-screen__icon--open {
+  transform: rotate(0);
+}
+
+.av-calendar-screen-group {
+  width: 100%;
+}
+
+.av-calendar-screen-group__inner {
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  font-size: 14px;
+  display: flex;
+  overflow: hidden;
+}
+
+.av-calendar-screen-group__item {
+  padding: 0 24px;
+  cursor: pointer;
+}
+
+.av-calendar-screen-group__item--active {
+  cursor: default;
+  pointer-events: none;
+  background: var(--av-text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Layout as OriginalLayout } from '@rspress/core/theme-original';
 import { CalendarProvider, useCalendar } from './CalendarContext';
 import { CalendarToggle } from './CalendarToggle';
+import { CalendarToggleMobile } from './CalendarToggleMobile';
 
 // Re-export everything from the original theme
 export * from '@rspress/core/theme-original';
@@ -54,6 +55,7 @@ function Layout() {
       </svg>
       <OriginalLayout />
       <CalendarToggle />
+      <CalendarToggleMobile />
       <AutoDateConverter />
     </CalendarProvider>
   );

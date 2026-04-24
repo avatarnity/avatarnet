@@ -3,7 +3,7 @@ pageType: home
 
 hero:
   name: Avatarnet
-  text: The Immortal Internet
+  text: A Digital Heaven
   tagline: A post-quantum and decentralized network for digital immortality.
   actions:
     # - theme: brand

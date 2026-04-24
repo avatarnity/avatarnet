@@ -14,61 +14,79 @@ interface DataCenter {
   mw: number;
   country: string;
   source: string;
+  sourceUrl?: string;
+  // If the figure was inferred (interpolated, midpointed, or back-projected
+  // from a stated number rather than reported directly), explain the math here.
+  note?: string;
 }
 
-// Major data center markets worldwide, capacity in MW (2025)
+// Major data center markets worldwide, operational/live IT load in MW
+// All figures verified from primary or trade-press sources during the 2025 audit.
+// Per-city sourceUrl points to the exact report/article that reported the figure.
 const DATA_CENTERS: DataCenter[] = [
   // United States
-  { name: 'Northern Virginia', lat: 38.95, lng: -77.45, mw: 3945, country: 'US', source: 'SSG' },
-  { name: 'Phoenix', lat: 33.45, lng: -112.07, mw: 1380, country: 'US', source: 'SSG' },
-  { name: 'Dallas\u2013Fort Worth', lat: 32.9, lng: -97.04, mw: 1125, country: 'US', source: 'SSG' },
-  { name: 'Atlanta', lat: 33.75, lng: -84.39, mw: 1065, country: 'US', source: 'SSG' },
-  { name: 'Chicago', lat: 41.88, lng: -87.63, mw: 805, country: 'US', source: 'SSG' },
-  { name: 'Silicon Valley', lat: 37.39, lng: -122.03, mw: 700, country: 'US', source: 'CBRE' },
-  { name: 'New York / New Jersey', lat: 40.73, lng: -74.17, mw: 600, country: 'US', source: 'CBRE' },
-  { name: 'Austin / San Antonio', lat: 30.27, lng: -97.74, mw: 463, country: 'US', source: 'SSG' },
-  { name: 'Las Vegas / Reno', lat: 36.17, lng: -115.14, mw: 400, country: 'US', source: 'CBRE' },
-  { name: 'Portland / Hillsboro', lat: 45.54, lng: -122.94, mw: 350, country: 'US', source: 'CBRE' },
+  { name: 'Northern Virginia', lat: 38.95, lng: -77.45, mw: 3945, country: 'US', source: 'SSG', sourceUrl: 'https://info.siteselectiongroup.com/blog/the-10-largest-u.s.-data-center-metro-areas-by-power-capacity-in-2025' },
+  { name: 'Phoenix', lat: 33.45, lng: -112.07, mw: 1380, country: 'US', source: 'SSG', sourceUrl: 'https://info.siteselectiongroup.com/blog/the-10-largest-u.s.-data-center-metro-areas-by-power-capacity-in-2025' },
+  { name: 'Dallas\u2013Fort Worth', lat: 32.9, lng: -97.04, mw: 1125, country: 'US', source: 'SSG', sourceUrl: 'https://info.siteselectiongroup.com/blog/the-10-largest-u.s.-data-center-metro-areas-by-power-capacity-in-2025' },
+  { name: 'Atlanta', lat: 33.75, lng: -84.39, mw: 1065, country: 'US', source: 'SSG', sourceUrl: 'https://info.siteselectiongroup.com/blog/the-10-largest-u.s.-data-center-metro-areas-by-power-capacity-in-2025' },
+  { name: 'Chicago', lat: 41.88, lng: -87.63, mw: 805, country: 'US', source: 'SSG', sourceUrl: 'https://info.siteselectiongroup.com/blog/the-10-largest-u.s.-data-center-metro-areas-by-power-capacity-in-2025' },
+  { name: 'Portland / Hillsboro', lat: 45.54, lng: -122.94, mw: 800, country: 'US', source: 'Hillsboro News Times', sourceUrl: 'https://hillsboronewstimes.com/2025/10/01/one-of-hillsboros-largest-data-center-operators-plans-6th-facility/' },
+  { name: 'Silicon Valley', lat: 37.39, lng: -122.03, mw: 718, country: 'US', source: 'CBRE', sourceUrl: 'https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025', note: 'CBRE figure for the Silicon Valley market boundary; bleeds into the broader South Bay.' },
+  { name: 'Northern New Jersey', lat: 40.73, lng: -74.17, mw: 572, country: 'US', source: 'Mordor Intelligence', sourceUrl: 'https://www.mordorintelligence.com/industry-reports/new-jersey-data-center-market' },
+  { name: 'Austin', lat: 30.27, lng: -97.74, mw: 165, country: 'US', source: 'CBRE', sourceUrl: 'https://www.cbre.com/insights/books/north-america-data-center-trends-h2-2025' },
+  { name: 'Las Vegas', lat: 36.17, lng: -115.14, mw: 427, country: 'US', source: 'Data Center Frontier', sourceUrl: 'https://www.datacenterfrontier.com/site-selection/article/33012732/hyperscale-driven-us-mountain-west-data-center-markets-continue-building-up-and-big' },
 
   // Asia Pacific
-  { name: 'Beijing', lat: 39.9, lng: 116.4, mw: 1799, country: 'CN', source: 'CBRE' },
-  { name: 'Shanghai', lat: 31.23, lng: 121.47, mw: 1200, country: 'CN', source: 'CBRE' },
-  { name: 'Tokyo', lat: 35.68, lng: 139.69, mw: 1100, country: 'JP', source: 'CBRE' },
-  { name: 'Singapore', lat: 1.35, lng: 103.82, mw: 1000, country: 'SG', source: 'CBRE' },
-  { name: 'Seoul', lat: 37.57, lng: 126.98, mw: 500, country: 'KR', source: 'SRG' },
-  { name: 'Sydney', lat: -33.87, lng: 151.21, mw: 400, country: 'AU', source: 'CBRE' },
-  { name: 'Mumbai', lat: 19.08, lng: 72.88, mw: 300, country: 'IN', source: 'SRG' },
-  { name: 'Hong Kong', lat: 22.32, lng: 114.17, mw: 300, country: 'HK', source: 'SRG' },
+  { name: 'Beijing', lat: 39.9, lng: 116.4, mw: 2000, country: 'CN', source: 'Cushman & Wakefield', sourceUrl: 'https://www.cushmanwakefield.com/en/greater-china/news/2025/06/surging-demand-for-data-infrastructure-fuels-real-estate-transformation' },
+  { name: 'Shanghai', lat: 31.23, lng: 121.47, mw: 1200, country: 'CN', source: 'CBRE', sourceUrl: 'https://www.cbre.com/insights/reports/global-data-center-trends-2025', note: "CBRE only states '>1 GW'. Floor 1000 + typical 2024 growth ≈ 1200." },
+  { name: 'Tokyo', lat: 35.68, lng: 139.69, mw: 1160, country: 'JP', source: 'Cushman & Wakefield', sourceUrl: 'https://www.cushmanwakefield.com/en/news/2025/05/demand-for-data-infrastructure-fuels-real-estate-transformation-across-global-data-center-markets' },
+  { name: 'Hong Kong', lat: 22.32, lng: 114.17, mw: 1090, country: 'HK', source: 'Arizton', sourceUrl: 'https://www.arizton.com/market-reports/hong-kong-data-center-market-size-analysis' },
+  { name: 'Singapore', lat: 1.35, lng: 103.82, mw: 1000, country: 'SG', source: 'CBRE', sourceUrl: 'https://www.cbre.com/insights/reports/asia-pacific-data-centre-trends-opportunities' },
+  { name: 'Mumbai', lat: 19.08, lng: 72.88, mw: 810, country: 'IN', source: 'Cushman & Wakefield', sourceUrl: 'https://www.cushmanwakefield.com/en/india/news/2025/07/mumbais-under-construction-data-center-capacity-ranks-6th-globally' },
+  { name: 'Sydney', lat: -33.87, lng: 151.21, mw: 789, country: 'AU', source: 'm3 Property', sourceUrl: 'https://m3property.com.au/static/88f0d39061ca9072f2bf0a5b61dc5c3f/M3-Property-Report-Data-Centre-Growth-in-Australia-November-25.pdf' },
+  { name: 'Jakarta', lat: -6.21, lng: 106.85, mw: 659, country: 'ID', source: 'Mordor Intelligence', sourceUrl: 'https://www.mordorintelligence.com/industry-reports/jakarta-data-center-market' },
+  { name: 'Bangkok', lat: 13.76, lng: 100.50, mw: 540, country: 'TH', source: 'Mordor Intelligence', sourceUrl: 'https://www.mordorintelligence.com/industry-reports/thailand-data-center-market' },
+  { name: 'Seoul', lat: 37.57, lng: 126.98, mw: 520, country: 'KR', source: 'W.Media', sourceUrl: 'https://w.media/a-closer-look-at-south-koreas-data-center-market-in-2025/' },
+  { name: 'Johor Bahru', lat: 1.49, lng: 103.74, mw: 487, country: 'MY', source: 'JLL', sourceUrl: 'https://www.jll.com/en-sea/insights/market-dynamics/johor-bahru-data-centre' },
+  { name: 'Manila', lat: 14.60, lng: 120.98, mw: 316, country: 'PH', source: 'Mordor Intelligence', sourceUrl: 'https://www.mordorintelligence.com/industry-reports/philippines-data-center-market' },
+  { name: 'Kuala Lumpur', lat: 3.14, lng: 101.69, mw: 200, country: 'MY', source: 'JLL', sourceUrl: 'https://www.jll.com/en-sea/newsroom/kuala-lumpur-q2-2025-market-dynamics-report' },
+  { name: 'Ho Chi Minh City', lat: 10.82, lng: 106.63, mw: 78, country: 'VN', source: 'Mordor Intelligence', sourceUrl: 'https://www.mordorintelligence.com/industry-reports/vietnam-data-center-market' },
 
   // Europe
-  { name: 'London', lat: 51.51, lng: -0.13, mw: 1100, country: 'GB', source: 'CBRE' },
-  { name: 'Frankfurt', lat: 50.11, lng: 8.68, mw: 800, country: 'DE', source: 'CBRE' },
-  { name: 'Paris', lat: 48.86, lng: 2.35, mw: 600, country: 'FR', source: 'CBRE' },
-  { name: 'Amsterdam', lat: 52.37, lng: 4.9, mw: 500, country: 'NL', source: 'CBRE' },
-  { name: 'Dublin', lat: 53.35, lng: -6.26, mw: 300, country: 'IE', source: 'SRG' },
-  { name: 'Stockholm', lat: 59.33, lng: 18.07, mw: 200, country: 'SE', source: 'SRG' },
-  { name: 'Madrid', lat: 40.42, lng: -3.7, mw: 150, country: 'ES', source: 'SRG' },
-  { name: 'Milan', lat: 45.46, lng: 9.19, mw: 150, country: 'IT', source: 'SRG' },
-  { name: 'Warsaw', lat: 52.23, lng: 21.01, mw: 100, country: 'PL', source: 'SRG' },
+  { name: 'Frankfurt', lat: 50.11, lng: 8.68, mw: 1300, country: 'DE', source: 'Mordor Intelligence', sourceUrl: 'https://www.mordorintelligence.com/industry-reports/frankfurt-data-center-market' },
+  { name: 'London', lat: 51.51, lng: -0.13, mw: 1189, country: 'GB', source: 'CBRE', sourceUrl: 'https://www.cbre.com/insights/figures/european-data-centres-figures-q2-2025' },
+  { name: 'Dublin', lat: 53.35, lng: -6.26, mw: 1150, country: 'IE', source: 'Gardiner & Theobald', sourceUrl: 'https://www.gardiner.com/marketintel/dublin-the-heart-of-irelands-data-centre-boom' },
+  { name: 'Amsterdam', lat: 52.37, lng: 4.9, mw: 1050, country: 'NL', source: 'Mordor Intelligence', sourceUrl: 'https://www.mordorintelligence.com/industry-reports/amsterdam-data-center-market' },
+  { name: 'Paris', lat: 48.86, lng: 2.35, mw: 600, country: 'FR', source: 'CBRE', sourceUrl: 'https://www.cbre.com/insights/reports/global-data-center-trends-2025', note: 'CBRE reports a 500–700 MW range; midpoint used.' },
+  { name: 'Milan', lat: 45.46, lng: 9.19, mw: 200, country: 'IT', source: 'Cushman & Wakefield', sourceUrl: 'https://www.cushmanwakefield.com/en/insights/emea-data-centre-update' },
+  { name: 'Madrid', lat: 40.42, lng: -3.7, mw: 195, country: 'ES', source: 'Cushman & Wakefield', sourceUrl: 'https://www.cushmanwakefield.com/en/spain/news/2025/03/madrid-among-the-top-10-cities-for-data-center-infrastructure-in-emea' },
+  { name: 'Warsaw', lat: 52.23, lng: 21.01, mw: 157, country: 'PL', source: 'Cushman & Wakefield', sourceUrl: 'https://www.cushmanwakefield.com/en/insights/emea-data-centre-update' },
+  { name: 'Stockholm', lat: 59.33, lng: 18.07, mw: 200, country: 'SE', source: 'Mordor Intelligence', sourceUrl: 'https://www.mordorintelligence.com/industry-reports/sweden-data-center-market', note: 'Sweden total 470 MW (Mordor); Stockholm is ~42% of national capacity → 200.' },
+  { name: 'Istanbul', lat: 41.01, lng: 28.98, mw: 60, country: 'TR', source: 'Mordor Intelligence', sourceUrl: 'https://www.mordorintelligence.com/industry-reports/turkey-data-center-market' },
+
+  // CIS
+  { name: 'Moscow', lat: 55.76, lng: 37.62, mw: 380, country: 'RU', source: 'Mordor Intelligence', sourceUrl: 'https://www.mordorintelligence.com/industry-reports/russia-data-center-market' },
+
+  // Middle East
+  { name: 'Dubai', lat: 25.20, lng: 55.27, mw: 232, country: 'AE', source: 'Arizton', sourceUrl: 'https://www.arizton.com/market-reports/united-arab-emirates-data-center-market' },
+  { name: 'Riyadh', lat: 24.71, lng: 46.68, mw: 115, country: 'SA', source: 'Arizton', sourceUrl: 'https://www.arizton.com/market-reports/saudi-arabia-data-center-market-investment-analysis', note: 'Arizton 2030 projection ~280 MW back-calculated at 16% CAGR; conservative 115.' },
+  { name: 'Tel Aviv', lat: 32.07, lng: 34.78, mw: 60, country: 'IL', source: 'Arizton', sourceUrl: 'https://www.arizton.com/market-reports/israel-data-center-market' },
 
   // Rest of world
-  { name: 'Toronto', lat: 43.65, lng: -79.38, mw: 300, country: 'CA', source: 'CBRE' },
-  { name: 'S\u00e3o Paulo', lat: -23.55, lng: -46.63, mw: 200, country: 'BR', source: 'SRG' },
-  { name: 'Johannesburg', lat: -26.2, lng: 28.04, mw: 100, country: 'ZA', source: 'SRG' },
-  { name: 'Santiago', lat: -33.45, lng: -70.67, mw: 50, country: 'CL', source: 'SRG' },
-  { name: 'Lagos', lat: 6.52, lng: 3.38, mw: 30, country: 'NG', source: 'SRG' },
-  { name: 'Nairobi', lat: -1.29, lng: 36.82, mw: 20, country: 'KE', source: 'SRG' },
+  { name: 'S\u00e3o Paulo', lat: -23.55, lng: -46.63, mw: 493, country: 'BR', source: 'CBRE', sourceUrl: 'https://www.cbre.com/insights/reports/global-data-center-trends-2025' },
+  { name: 'Toronto', lat: 43.65, lng: -79.38, mw: 312, country: 'CA', source: 'CBRE', sourceUrl: 'https://www.cbre.com/insights/local-response/north-america-data-center-trends-h1-2025-market-profiles-toronto' },
+  { name: 'Johannesburg', lat: -26.2, lng: 28.04, mw: 248, country: 'ZA', source: 'Arizton', sourceUrl: 'https://www.businesswire.com/news/home/20250624706803/en/South-Africa-Data-Center-Market-Investment-Analysis-Growth-Opportunities-2025-2030-Johannesburg-Emerges-as-a-Leading-Hub-with-15-Data-Centers-and-More-on-the-Horizon---ResearchAndMarkets.com' },
+  { name: 'Santiago', lat: -33.45, lng: -70.67, mw: 148, country: 'CL', source: 'CBRE', sourceUrl: 'https://www.cbre.com/insights/reports/global-data-center-trends-2025' },
+  { name: 'Lagos', lat: 6.52, lng: 3.38, mw: 50, country: 'NG', source: 'Connecting Africa', sourceUrl: 'https://www.connectingafrica.com/data-centers/nigeria-s-data-center-growth-prospects-amid-power-constraints' },
+  { name: 'Cairo', lat: 30.04, lng: 31.24, mw: 30, country: 'EG', source: 'Arizton', sourceUrl: 'https://www.arizton.com/market-reports/egypt-data-center-market', note: 'Arizton Egypt national total ≈ 30 MW, ~95% concentrated in Cairo.' },
+  { name: 'Casablanca', lat: 33.57, lng: -7.59, mw: 15, country: 'MA', source: 'Arizton', sourceUrl: 'https://www.arizton.com/market-reports/morocco-data-center-market', note: 'Arizton lists 2–3 commissioned facilities; estimate 2 × ~7 MW ≈ 15.' },
+  { name: 'Nairobi', lat: -1.29, lng: 36.82, mw: 15, country: 'KE', source: 'Arizton', sourceUrl: 'https://www.arizton.com/market-reports/kenya-data-center-market-investment-analysis' },
+  { name: 'Addis Ababa', lat: 9.02, lng: 38.75, mw: 15, country: 'ET', source: 'DatacenterDynamics', sourceUrl: 'https://www.datacenterdynamics.com/en/news/raxio-launches-data-center-in-addis-ababa-ethiopia/' },
+  { name: 'Accra', lat: 5.56, lng: -0.19, mw: 10, country: 'GH', source: 'DatacenterDynamics', sourceUrl: 'https://www.datacenterdynamics.com/en/news/africa-data-centres-and-onix-partner-for-data-center-build-in-accra-ghana/' },
 ];
 
 const TOTAL_MW = DATA_CENTERS.reduce((sum, dc) => sum + dc.mw, 0);
 const SORTED = [...DATA_CENTERS].sort((a, b) => b.mw - a.mw);
-
-const SOURCES = [
-  { key: 'CBRE', name: 'CBRE Global Data Center Trends 2025', url: 'https://www.cbre.com/insights/reports/global-data-center-trends-2025' },
-  { key: 'SSG', name: 'Site Selection Group: 10 Largest US Data Center Metros 2025', url: 'https://info.siteselectiongroup.com/blog/the-10-largest-u.s.-data-center-metro-areas-by-power-capacity-in-2025' },
-  { key: 'SRG', name: 'Synergy Research Group', url: 'https://www.srgresearch.com/articles/hyperscale-operators-to-account-for-67-of-all-data-center-capacity-by-2031' },
-  { key: 'Brookings', name: 'Brookings Institution: The Future of Data Centers', url: 'https://www.brookings.edu/articles/the-future-of-data-centers/' },
-];
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
 
@@ -89,7 +107,21 @@ const THEME = {
   light: { geoFill: '#e2e0f0', geoStroke: '#c4c2d6', geoHover: '#d4d2e8' },
 };
 
-const SOURCE_LABELS: Record<string, string> = { SSG: 'Site Selection Group', CBRE: 'CBRE', SRG: 'Synergy Research' };
+const SOURCE_LABELS: Record<string, string> = {
+  SSG: 'Site Selection Group',
+  CBRE: 'CBRE',
+  'Mordor Intelligence': 'Mordor Intelligence',
+  Arizton: 'Arizton',
+  JLL: 'JLL',
+  DatacenterDynamics: 'DatacenterDynamics',
+  'Cushman & Wakefield': 'Cushman & Wakefield',
+  'Hillsboro News Times': 'Hillsboro News Times',
+  'Data Center Frontier': 'Data Center Frontier',
+  'Gardiner & Theobald': 'Gardiner & Theobald',
+  'W.Media': 'W.Media',
+  'Connecting Africa': 'Connecting Africa',
+  'm3 Property': 'm3 Property',
+};
 
 function getRadius(mw: number): number {
   // Range: ~1.5 (20 MW) to ~8 (3945 MW)
@@ -150,11 +182,14 @@ function MapView() {
     setTooltip(null);
   }, []);
 
-  const handleTap = useCallback((dc: DataCenter, e: React.TouchEvent) => {
+  const handleTap = useCallback((dc: DataCenter, e: React.TouchEvent<SVGCircleElement>) => {
     e.stopPropagation();
-    const touch = e.touches[0] || e.changedTouches[0];
+    // Use the dot's actual on-screen position rather than touch coords —
+    // react-simple-maps wraps the SVG in transforms which make touch.clientX/Y
+    // unreliable on mobile, dropping the tooltip far from the dot.
+    const rect = e.currentTarget.getBoundingClientRect();
     setTooltip((prev) => prev?.name === dc.name ? null : dc);
-    setTooltipPos({ x: touch.clientX, y: touch.clientY });
+    setTooltipPos({ x: rect.left + rect.width / 2, y: rect.top });
   }, []);
 
   const handleBackgroundTap = useCallback(() => {
@@ -212,20 +247,42 @@ function MapView() {
         </ZoomableGroup>
       </ComposableMap>
 
-      {tooltip && (
+      {tooltip && (() => {
+        // Clamp tooltip to viewport so it never lands off-screen
+        const W = 280;
+        const H = tooltip.note ? 160 : 100;
+        const M = 8;
+        const vw = typeof window !== 'undefined' ? window.innerWidth : 1024;
+        const vh = typeof window !== 'undefined' ? window.innerHeight : 768;
+        let left = tooltipPos.x + 12;
+        let top = tooltipPos.y - H - 4;
+        if (left + W > vw - M) left = vw - W - M;
+        if (left < M) left = M;
+        if (top < M) top = tooltipPos.y + 12;
+        if (top + H > vh - M) top = vh - H - M;
+        return (
         <div
           className="av-dc-tooltip"
           style={{
             position: 'fixed',
-            left: tooltipPos.x + 12,
-            top: tooltipPos.y - 40,
+            left,
+            top,
           }}
         >
           <strong>{tooltip.name}</strong>
           <span>{tooltip.mw.toLocaleString()} MW</span>
           <span>{((tooltip.mw / TOTAL_MW) * 100).toFixed(1)}% of mapped capacity</span>
+          <span className="av-dc-tooltip-source">
+            Source: {SOURCE_LABELS[tooltip.source] || tooltip.source}
+          </span>
+          {tooltip.note && (
+            <span className="av-dc-tooltip-note">
+              <span className="av-dc-info">ⓘ</span> {tooltip.note}
+            </span>
+          )}
         </div>
-      )}
+        );
+      })()}
 
       <div className="av-dc-legend">
         <div className="av-dc-legend-item">
@@ -274,14 +331,31 @@ function TableView() {
               <td>{dc.country}</td>
               <td className="av-dc-num">{dc.mw.toLocaleString()}</td>
               <td className="av-dc-num">{((dc.mw / TOTAL_MW) * 100).toFixed(1)}%</td>
-              <td>{SOURCE_LABELS[dc.source] || dc.source}</td>
+              <td>
+                {dc.sourceUrl ? (
+                  <a href={dc.sourceUrl} target="_blank" rel="noopener noreferrer">
+                    {SOURCE_LABELS[dc.source] || dc.source}
+                  </a>
+                ) : (
+                  SOURCE_LABELS[dc.source] || dc.source
+                )}
+                {dc.note && (
+                  <span
+                    className="av-dc-info"
+                    title={dc.note}
+                    aria-label={dc.note}
+                  >
+                    {' '}ⓘ
+                  </span>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
         <tfoot>
           <tr>
             <td />
-            <td><strong>Total (33 markets)</strong></td>
+            <td><strong>Total ({SORTED.length} markets)</strong></td>
             <td />
             <td className="av-dc-num"><strong>{TOTAL_MW.toLocaleString()}</strong></td>
             <td className="av-dc-num"><strong>100%</strong></td>
@@ -291,19 +365,11 @@ function TableView() {
       </table>
 
       <div className="av-dc-sources">
-        <strong>Sources</strong>
-        <ul>
-          {SOURCES.map((s) => (
-            <li key={s.key}>
-              <a href={s.url} target="_blank" rel="noopener noreferrer">{s.name}</a>
-            </li>
-          ))}
-        </ul>
         <p>
-          Capacity figures represent commissioned multitenant power in megawatts (MW) for major
-          colocation and hyperscale markets as of mid-2025. These 33 markets are a subset of
-          the roughly 11,000 data centres worldwide. Figures for smaller markets are estimates
-          based on available industry reporting.
+          Capacity figures are commissioned multitenant power (MW) as of mid-2025.
+          These {SORTED.length} markets are a subset of the roughly 11,000 data
+          centres worldwide. Click any source to verify; ⓘ marks figures derived
+          from a stated range or related total.
         </p>
       </div>
     </div>

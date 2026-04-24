@@ -10,6 +10,13 @@ export function seoPlugin({ siteUrl }: SeoPluginOptions): RspressPlugin {
   return {
     name: 'seo-plugin',
 
+    // Register PageTitleFix as the last globalUIComponent so its useHead call
+    // wins on hydration (overrides Rspress 2.0.8's buggy client-side title).
+    // This handles SPA navigation; afterBuild below handles direct/SSR loads.
+    globalUIComponents: [
+      path.resolve(import.meta.dirname, '..', 'theme', 'PageTitleFix.tsx'),
+    ],
+
     async afterBuild(config, _isProd) {
       const outDir = config.outDir ?? 'build';
       const buildDir = path.isAbsolute(outDir)
@@ -18,10 +25,62 @@ export function seoPlugin({ siteUrl }: SeoPluginOptions): RspressPlugin {
 
       if (!fs.existsSync(buildDir)) return;
 
+      // Rspress 2.0.8 bakes the global title into every page's HTML template
+      // (initRsbuild.js html.title) and the per-page useHead title doesn't
+      // override it during SSR. Without this fix, every page emits the same
+      // <title>, which Google interprets as low-signal and rewrites to the H1.
+      await fixPerPageTitles(buildDir, config.title ?? '');
       await generateSitemap(buildDir, siteUrl);
       await generateLlmsFullTxt(buildDir, config.root ?? 'content');
     },
   };
+}
+
+function escapeHtmlAttr(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+async function fixPerPageTitles(buildDir: string, mainTitle: string) {
+  const htmlFiles: string[] = [];
+  function walk(dir: string) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory() && entry.name !== 'static') walk(full);
+      else if (entry.isFile() && entry.name.endsWith('.html')) htmlFiles.push(full);
+    }
+  }
+  walk(buildDir);
+
+  let fixed = 0;
+  for (const file of htmlFiles) {
+    const isHomepage = file === path.join(buildDir, 'index.html');
+    if (isHomepage) continue; // homepage keeps the global title
+
+    const original = fs.readFileSync(file, 'utf-8');
+    const h1Match = original.match(/<h1[^>]*>([\s\S]*?)<\/h1>/);
+    if (!h1Match) continue;
+
+    // H1 contains a leading <a class="rp-header-anchor">#</a> and trailing
+    // <!-- --> SSR markers. Strip tags + comments, drop any leading "#".
+    const h1Text = h1Match[1]
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/<[^>]+>/g, '')
+      .replace(/^#+/, '')
+      .trim();
+    if (!h1Text) continue;
+
+    const newTitle = mainTitle ? `${h1Text} | ${mainTitle}` : h1Text;
+    const escaped = escapeHtmlAttr(newTitle);
+
+    let updated = original.replace(/<title>[^<]*<\/title>/, `<title>${escaped}</title>`);
+    updated = updated.replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${escaped}">`);
+
+    if (updated !== original) {
+      fs.writeFileSync(file, updated);
+      fixed++;
+    }
+  }
+  console.log(`[seo-plugin] per-page <title> rewritten on ${fixed} pages`);
 }
 
 async function generateSitemap(buildDir: string, siteUrl: string) {

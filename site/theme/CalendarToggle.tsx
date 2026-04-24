@@ -47,7 +47,7 @@ export function CalendarToggle() {
       onMouseLeave={() => setOpen(false)}
     >
       <div className="rp-nav-menu__item__container">
-        {holocene ? '12026' : '2026'}
+        {holocene ? new Date().getFullYear() + 10000 : new Date().getFullYear()}
         <svg className="rp-nav-menu__item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M6 9l6 6 6-6" />
         </svg>

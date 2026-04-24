@@ -27,11 +27,17 @@ const jsonLd = JSON.stringify({
 export default defineConfig({
   root: path.join(import.meta.dirname, 'content'),
   outDir: 'build',
-  title: 'Avatarnet',
+  title: 'Avatarnet: A Digital Heaven',
   description: 'A post-quantum and decentralized network for digital immortality.',
-  icon: '/favicon.svg',
+  icon: '/favicon-32.png',
   logoText: 'Avatarnet',
   head: [
+    // Default to dark theme on first visit. Must run BEFORE Rspress's theme
+    // script (which respects localStorage); pre-seeding here means no flash
+    // from a brief light render before switching to dark.
+    `<script>try{if(!localStorage.getItem('rspress-theme-appearance'))localStorage.setItem('rspress-theme-appearance','dark')}catch(e){}</script>`,
+    // Raster favicon for Google search results (Google's image pipeline picks up PNG more reliably than SVG)
+    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32.png' }],
     ['meta', { property: 'og:site_name', content: 'Avatarnet' }],
     ['meta', { property: 'og:image', content: `${siteUrl}/iconmark-color.svg` }],
     ['meta', { name: 'twitter:card', content: 'summary' }],
@@ -53,6 +59,11 @@ export default defineConfig({
     ],
   },
   plugins: [seoPlugin({ siteUrl })],
+  globalUIComponents: [
+    // Forces per-page <title> via useHead — see theme/PageTitleFix.tsx for the
+    // Rspress 2.0.8 client-side title bug this works around.
+    path.join(import.meta.dirname, 'theme', 'PageTitleFix.tsx'),
+  ],
   themeConfig: {
     socialLinks: [
       {
