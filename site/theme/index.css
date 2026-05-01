@@ -1,0 +1,1241 @@
+/* Avatarnet Brand Theme */
+/* Typography + Colors: avatarnity.com/brand-centre */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Typography */
+  --rp-font-family-base: 'Nunito', sans-serif;
+
+  /* Light mode text — deep navy instead of black */
+  --rp-c-text-1: #020817;
+  --rp-c-text-2: #020817;
+
+  /* Brand — Cosmic Purple */
+  --rp-c-brand: #6645EB;
+  --rp-c-brand-light: #8B6FFF;
+  --rp-c-brand-lighter: #A78BFF;
+  --rp-c-brand-dark: #5234CC;
+  --rp-c-brand-darker: #4025A8;
+  --rp-c-brand-tint: rgba(102, 69, 235, 0.16);
+
+  /* Brand gradient endpoints — change these to update all gradients */
+  --av-gradient-from: #6645EB;
+  --av-gradient-to: #D445EB;
+  /* Text gradient — matches avatarnity.com (100deg, magenta at 38%) */
+  --av-text-gradient: linear-gradient(100deg, var(--av-gradient-from), var(--av-gradient-to) 38%);
+
+  /* Hero gradient: Cosmic Purple → Electric Magenta */
+  --rp-home-hero-title-bg: linear-gradient(90deg, var(--av-gradient-from), var(--av-gradient-to));
+  --rp-home-hero-title-color: transparent;
+  --rp-home-hero-secondary-color: var(--av-gradient-to);
+}
+
+.dark {
+  /* Brand (brighter in dark mode for contrast) */
+  --rp-c-brand: #8B6FFF;
+  --rp-c-brand-light: #A78BFF;
+  --rp-c-brand-dark: #6645EB;
+
+  /* Backgrounds — deep navy (matching avatarnity.com) */
+  --rp-c-bg: #020817;
+  --rp-c-bg-soft: #090922;
+  --rp-c-bg-mute: #0f172a;
+
+  /* Text */
+  --rp-c-text-1: #AFAEC6;
+  --rp-c-text-2: #AFAEC6;
+  --rp-c-text-3: #5A606C;
+
+  /* Dividers */
+  --rp-c-divider: rgba(175, 174, 198, 0.2);
+  --rp-c-divider-light: rgba(175, 174, 198, 0.2);
+
+  /* Home background — keep default splashes, swap base to our navy */
+  --rp-home-background-bg:
+    radial-gradient(42.12% 56.13% at 100% 0%, #0c1d48 0%, rgba(18, 18, 18, 0) 100%),
+    radial-gradient(55.81% 87.78% at 48.37% 0%, #000000 0%, rgba(18, 18, 18, 0) 89.55%),
+    radial-gradient(122.65% 88.24% at 0% 0%, #34268a 0%, rgba(18, 18, 18, 0) 100%),
+    #020817;
+}
+
+/* Body text — medium weight */
+body {
+  font-weight: 500;
+}
+
+/* Hero brand name — slightly larger than default */
+.rp-home-hero__title-brand {
+  font-size: 4.5rem;
+}
+
+@media (max-width: 600px) {
+  .rp-home-hero__title-brand {
+    font-size: 3rem;
+  }
+}
+
+/* Quicksand — headings, nav, hero, card titles, sidebar */
+h1, h2, h3, h4, h5, h6,
+.rp-home-hero__title,
+.rp-home-hero__subtitle,
+.rp-home-hero__title-brand,
+.rp-nav-menu__item__container,
+.rp-nav__title__link,
+.rp-home-feature__title,
+.rp-sidebar-item,
+.rp-sidebar-group__title {
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* Avatarnet logo (top-left) — rounded geometric, bold */
+.rp-nav__title__link {
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+/* Nav layout — true center nav links, search + socials on the right */
+.rp-nav {
+  position: relative;
+}
+
+.rp-nav-menu {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.rp-nav__right {
+  justify-content: flex-end;
+}
+
+/* Hide external link arrow (↗) on nav items */
+.rp-nav-menu a[target="_blank"]::after {
+  display: none !important;
+}
+
+/* Top nav items — bold */
+.rp-nav-menu__item .rp-nav-menu__item__container {
+  font-weight: 700;
+}
+
+/* Sidebar items (unselected) + TOC — medium weight */
+.rp-sidebar-item {
+  font-weight: 500 !important;
+}
+
+.rp-sidebar-item--active {
+  font-weight: 600 !important;
+}
+
+.rp-toc-item__text {
+  font-weight: 500;
+}
+
+/* Hero buttons — synced with avatarnity.com */
+.rp-button {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: -0.32px;
+  text-transform: capitalize;
+  height: auto !important;
+  padding: 16px 25px !important;
+  border-radius: 100px !important;
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  .rp-button {
+    font-size: 14px;
+    line-height: 24px !important;
+    padding: 17px 20px !important;
+  }
+
+  .rp-home-hero__actions {
+    width: auto;
+    align-items: center;
+  }
+}
+
+/* Both buttons — no default border, pill shape, overflow hidden for flash */
+.rp-button--brand,
+.rp-button--alt {
+  border: none !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Alt button — white text on deep navy (matching avatarnity.com) */
+.rp-button--alt {
+  color: #fff !important;
+  background-color: #020817 !important;
+}
+
+.rp-button--brand:hover,
+.rp-button--alt:hover {
+  opacity: 1 !important;
+}
+
+/* Gradient flash sweep left-to-right on hover */
+@keyframes gradient-flash {
+  0% { background-position: 100% 0, 0 0; }
+  100% { background-position: -100% 0, 0 0; }
+}
+
+.rp-button--brand:hover {
+  background-image:
+    linear-gradient(90deg, transparent 0%, rgba(255, 150, 255, 0.9) 40%, rgba(255, 150, 255, 0.9) 60%, transparent 100%),
+    var(--rp-home-hero-title-bg) !important;
+  background-size: 200% 100%, 100% 100%;
+  background-repeat: no-repeat, no-repeat;
+  animation: gradient-flash 1.2s ease-out forwards;
+}
+
+.rp-button--alt:hover {
+  background-image: linear-gradient(90deg, transparent 0%, rgba(255, 150, 255, 0.9) 40%, rgba(255, 150, 255, 0.9) 60%, transparent 100%) !important;
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: gradient-flash 1.2s ease-out forwards;
+}
+
+
+.rp-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  padding: 1.5px;
+  pointer-events: none;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.rp-button:hover::before {
+  padding: 2px;
+}
+
+/* Brand button — gray gradient border (always visible, 20% transparent) */
+.rp-button--brand::before {
+  background: linear-gradient(90deg, rgba(175, 174, 198, 0.2), rgba(90, 96, 108, 0.2));
+}
+
+/* Alt button — brand gradient border (always visible, 50% transparent) */
+.rp-button--alt::before {
+  background: linear-gradient(90deg, rgba(102, 69, 235, 0.5), rgba(212, 69, 235, 0.5));
+}
+
+/* Rotating lights on hover — ::after layer on top of border */
+.rp-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 100px;
+  padding: 1.5px;
+  pointer-events: none;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+}
+
+.rp-button:hover::after {
+  opacity: 1;
+  padding: 2px;
+}
+
+/* Brand button — Light Gray (#AFAEC6) + Muted Gray (#5A606C) lights ~100px */
+.rp-button--brand::after {
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 0deg,
+    rgba(175, 174, 198, 0.3) 5deg,
+    rgba(175, 174, 198, 1) 20deg,
+    rgba(175, 174, 198, 1) 40deg,
+    rgba(175, 174, 198, 1) 60deg,
+    rgba(175, 174, 198, 0.3) 75deg,
+    transparent 80deg,
+    transparent 180deg,
+    rgba(90, 96, 108, 0.3) 185deg,
+    rgba(90, 96, 108, 1) 200deg,
+    rgba(90, 96, 108, 1) 220deg,
+    rgba(90, 96, 108, 1) 240deg,
+    rgba(90, 96, 108, 0.3) 255deg,
+    transparent 260deg
+  );
+  animation: rotate-border 4s linear infinite;
+}
+
+/* Alt button — purple + magenta lights ~100px */
+.rp-button--alt::after {
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 0deg,
+    rgba(102, 69, 235, 0.15) 5deg,
+    var(--av-gradient-from) 20deg,
+    var(--av-gradient-from) 40deg,
+    var(--av-gradient-from) 60deg,
+    rgba(102, 69, 235, 0.15) 75deg,
+    transparent 80deg,
+    transparent 180deg,
+    rgba(212, 69, 235, 0.15) 185deg,
+    var(--av-gradient-to) 200deg,
+    var(--av-gradient-to) 220deg,
+    var(--av-gradient-to) 240deg,
+    rgba(212, 69, 235, 0.15) 255deg,
+    transparent 260deg
+  );
+  animation: rotate-border 4s linear infinite;
+}
+
+/* Disable card tilt/shine animation on hover */
+.rp-home-feature__item-wrapper {
+  transform: none !important;
+}
+
+.rp-home-feature__card {
+  transform: none !important;
+}
+
+.rp-home-feature__item__shine {
+  display: none !important;
+}
+
+/* Animated gradient border on feature cards (hover only) */
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate-border {
+  to { --border-angle: 360deg; }
+}
+
+.rp-home-feature__card {
+  position: relative;
+}
+
+.rp-home-feature__card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 2rem;
+  padding: 2px;
+  background: conic-gradient(from var(--border-angle), var(--av-gradient-from), var(--av-gradient-to), var(--av-gradient-from));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.rp-home-feature__item:hover .rp-home-feature__card::before {
+  opacity: 1;
+  animation: rotate-border 4s linear infinite;
+}
+
+.rp-home-feature__item:hover .rp-home-feature__card {
+  border-color: transparent !important;
+}
+
+/* Feature card title — gradient text on hover */
+.rp-home-feature__item:hover .rp-home-feature__title {
+  background: linear-gradient(90deg, var(--av-gradient-from), var(--av-gradient-to));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  width: fit-content;
+}
+
+/* Active nested sidebar indicator line — brand primary per mode */
+.rp-sidebar-item--group-item.rp-sidebar-item--active .rp-sidebar-item__left:before {
+  background-color: var(--rp-c-brand-light) !important;
+}
+.dark .rp-sidebar-item--group-item.rp-sidebar-item--active .rp-sidebar-item__left:before {
+  background-color: var(--rp-c-brand-dark) !important;
+}
+
+/* Active sidebar item — gradient text + gradient tint background */
+.rp-sidebar-item--active,
+.rp-sidebar-item--active:hover {
+  background: linear-gradient(100deg, color-mix(in srgb, var(--av-gradient-from) 10%, transparent), color-mix(in srgb, var(--av-gradient-to) 10%, transparent) 38%) !important;
+}
+
+.rp-sidebar-item--active .rp-sidebar-item__left,
+.rp-sidebar-item--active:hover .rp-sidebar-item__left {
+  background: var(--av-text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  width: fit-content;
+}
+
+/* Active top nav item — gradient text */
+.rp-nav-menu__item--active .rp-nav-menu__item__container {
+  background: var(--av-text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  width: fit-content;
+}
+
+/* Active TOC item — black in light, white in dark */
+.rp-toc-item--active .rp-toc-item__text {
+  color: #020817 !important;
+  -webkit-text-fill-color: #020817 !important;
+}
+.dark .rp-toc-item--active .rp-toc-item__text {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+/* Table header — match our navy palette */
+.dark .rp-doc table thead {
+  background: #0f172a;
+}
+
+/* Table cells — top-align by default */
+.rp-doc table td,
+.rp-doc table th {
+  vertical-align: top;
+}
+
+/* Fixed-layout tables respect colgroup widths */
+.rp-doc table.av-pillars-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+/* Alphabet grid — plain pre styled to look like native Rspress code blocks */
+.rp-doc pre.av-alphabet-grid {
+  font-family: var(--rp-font-family-mono);
+  font-size: var(--rp-code-font-size);
+  color: var(--rp-code-block-color);
+  background-color: var(--rp-code-block-bg);
+  line-height: 1.7;
+  padding: 1rem 1.25rem;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  overflow-x: auto;
+}
+
+.rp-doc pre.av-alphabet-grid del {
+  color: var(--rp-c-text-3);
+  text-decoration: line-through;
+  text-decoration-color: var(--av-gradient-to);
+  text-decoration-thickness: 2px;
+  opacity: 0.7;
+}
+
+.rp-home-feature__title del {
+  color: var(--rp-c-text-2);
+  text-decoration: line-through;
+  text-decoration-color: var(--av-gradient-to);
+  text-decoration-thickness: 2px;
+  opacity: 0.5;
+}
+
+/* On hover, restore full opacity so "Websites" reads at the same intensity as
+   the rest of the title — without this it stays at 50% and the gradient looks
+   washed out compared to "Avatar Domains". */
+.rp-home-feature__item:hover .rp-home-feature__title del {
+  opacity: 1;
+}
+
+/* Content links — gradient text, gradient underline on hover */
+.rp-doc a {
+  text-decoration: none;
+  background: var(--av-text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  border-bottom: 1.5px solid transparent;
+  border-image: linear-gradient(100deg, var(--av-gradient-from), var(--av-gradient-to) 38%) 1;
+  border-image-width: 0 0 0 0;
+  transition: border-image-width 0.25s;
+}
+
+.rp-doc a:hover {
+  opacity: 1 !important;
+  border-image-width: 0 0 1.5px 0;
+}
+
+/* External link ↗ arrow — restore visibility (the .rp-doc a gradient-text
+   above clips text to background, which makes Rspress's :after arrow render
+   as transparent/gradient-clipped). Force a solid brand-magenta fill so the
+   arrow shows, and let Rspress core's transition handle the slide animation. */
+.rp-doc a.rp-link[target="_blank"]:after {
+  -webkit-text-fill-color: var(--av-gradient-to);
+  color: var(--av-gradient-to);
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+}
+
+
+/* Note callout — Electric Magenta bar + title */
+.rp-callout--note .rp-callout__title {
+  color: var(--rp-c-brand) !important;
+}
+
+.rp-callout--note .rp-callout__title:before {
+  background-color: var(--rp-c-brand) !important;
+}
+
+/* Content headings + sidebar section headers — white */
+.dark .rp-doc h1,
+.dark .rp-doc h2,
+.dark .rp-doc h3,
+.dark .rp-doc h4,
+.dark .rp-doc h5,
+.dark .rp-doc h6,
+.dark .rp-sidebar-section-header,
+.dark .rp-sidebar-group__title,
+.dark .rp-outline__title {
+  color: #FFFFFF;
+}
+
+/* Progress circle — brand gradient stroke */
+.rp-progress-circle circle:last-child {
+  stroke: url(#av-brand-gradient) !important;
+}
+
+/* Active TOC indicator line — black in light, white in dark */
+.rp-toc-item--active::before {
+  background: #020817 !important;
+}
+.dark .rp-toc-item--active::before {
+  background: #fff !important;
+}
+
+/* Top nav item hover — gradient text */
+.rp-nav-menu__item:hover .rp-nav-menu__item__container {
+  background: var(--av-text-gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+  width: fit-content;
+}
+
+/* Keep dropdown arrow visible on hover (gradient makes currentColor transparent) */
+.rp-nav-menu__item:hover .rp-nav-menu__item__icon {
+  stroke: var(--av-gradient-to) !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+/* Header anchor (#) — gradient on hover */
+.rp-header-anchor {
+  background: var(--av-text-gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  width: fit-content;
+}
+
+
+/* Search button — animated gradient border on hover (same as cards) */
+.rp-search-button {
+  position: relative;
+}
+
+.rp-search-button::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--rp-radius-small);
+  padding: 2px;
+  background: conic-gradient(from var(--border-angle), var(--av-gradient-from), var(--av-gradient-to), var(--av-gradient-from));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.rp-search-button:hover::before {
+  opacity: 1;
+  animation: rotate-border 4s linear infinite;
+}
+
+.rp-search-button:hover {
+  border-color: transparent !important;
+}
+
+/* Search dialog — swap bg colors */
+.dark .rp-search-panel__modal {
+  background-color: #020817;
+}
+
+.dark .rp-suggest-item .rp-suggest-item__link {
+  background-color: #0f172a;
+}
+
+.dark .rp-search-panel__input-form,
+.dark .rp-search-panel__input {
+  background-color: #090922;
+}
+
+/* Search dialog input — animated gradient border */
+.rp-search-panel__input-form {
+  position: relative;
+  border: none !important;
+}
+
+.rp-search-panel__input-form::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--rp-radius-small);
+  padding: 2px;
+  background: conic-gradient(from var(--border-angle), var(--av-gradient-from), var(--av-gradient-to), var(--av-gradient-from));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: rotate-border 4s linear infinite;
+}
+
+/* Search result item hovered — same as active sidebar (gradient tint bg + gradient text) */
+.rp-suggest-item--current .rp-suggest-item__link {
+  background: linear-gradient(100deg, color-mix(in srgb, var(--av-gradient-from) 10%, transparent), color-mix(in srgb, var(--av-gradient-to) 10%, transparent) 38%) !important;
+}
+
+.rp-suggest-item--current .rp-suggest-item__content .rp-suggest-item__statement,
+.rp-suggest-item--current .rp-suggest-item__content .rp-suggest-item__mark,
+.rp-suggest-item--current .rp-suggest-item__content .rp-suggest-item__title,
+.rp-suggest-item--current .rp-suggest-item__content .rp-suggest-item__header {
+  background: var(--av-text-gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  width: fit-content;
+}
+
+.rp-suggest-item--current .rp-suggest-item__icon {
+  color: var(--av-gradient-from) !important;
+}
+
+/* Calendar toggle — reuses Rspress nav menu dropdown styles */
+.av-calendar-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.av-calendar-toggle-wrapper .rp-hover-group__item {
+  cursor: pointer;
+}
+
+.av-calendar-toggle-wrapper .rp-hover-group__item--active {
+  background: var(--av-text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Timeline — serpentine horizontal layout
+ *
+ * Node layout (top to bottom):
+ *   padding-top ......... 0.3rem
+ *   icon ................ 1.2rem  (font-size 1.2rem, line-height 1)
+ *   title-margin-top .... 0.15rem
+ *   title ............... 0.84rem (font-size 0.7rem × line-height 1.2)
+ *   dot-margin-top ...... 0.25rem
+ *   DOT ................. 10px    (center = 5px)
+ *   dot-margin-bottom ... 0.25rem
+ *   date ................ 0.72rem (font-size 0.6rem × line-height 1.2)
+ *   padding-bottom ...... 0.3rem
+ *
+ * --av-tl-dot-y  = top of node → center of dot   = 0.3+1.2+0.15+0.84+0.25+5px = 2.74rem + 5px
+ * --av-tl-dot-b  = center of dot → bottom of node = 5px+0.25+0.72+0.3         = 1.27rem + 5px
+ */
+.av-timeline {
+  --av-tl-dot-y: calc(2.96rem + 5px);
+  --av-tl-dot-b: calc(1.39rem + 5px);
+  margin: 2rem 0;
+}
+
+/* Reset any inherited margins/gaps on wrapper divs */
+.av-timeline > div {
+  margin: 0;
+  padding: 0;
+}
+
+/* Each row of items */
+.av-timeline__row {
+  display: flex;
+  position: relative;
+}
+
+/* Continuous gradient line — pinned to dot center, clipped to first/last dot */
+.av-timeline__row::before {
+  content: '';
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(to right, var(--av-gradient-from), var(--av-gradient-to));
+  z-index: 0;
+  top: var(--av-tl-dot-y);
+  /* 4-item row: each node 25%, center at 12.5% from edge */
+  left: 12.5%;
+  right: 12.5%;
+}
+
+/* RTL row reverses items + gradient direction */
+.av-timeline__row--rtl {
+  flex-direction: row-reverse;
+}
+
+/* RTL line keeps same gradient direction so curve colors match at junctions */
+
+/* Each node */
+.av-timeline__node {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.3rem 0.15rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Icon */
+.av-timeline__icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  order: 1;
+}
+
+/* Title — height locked to match calc */
+.av-timeline__title {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  color: var(--rp-c-text-1);
+  order: 2;
+  margin-top: 0.15rem;
+  white-space: nowrap;
+}
+
+/* Dot — pinned to line center via absolute positioning */
+.av-timeline__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--av-gradient-from), var(--av-gradient-to));
+  position: absolute;
+  top: calc(var(--av-tl-dot-y) + 0.5px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+/* Date below the dot — extra margin-top replaces dot's space in flow */
+.av-timeline__date {
+  font-size: 0.7rem;
+  line-height: 1.2;
+  height: 0.84rem;
+  color: var(--rp-c-text-3, #888);
+  font-weight: 500;
+  order: 4;
+  margin-top: calc(0.25rem + 10px + 0.25rem);
+}
+
+/* All rows use 4-column grid */
+.av-timeline__node {
+  flex: 0 0 25%;
+}
+
+/* Middle row — offset by half a column for brick pattern */
+.av-timeline__row--offset {
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+}
+
+.av-timeline__row--offset .av-timeline__node {
+  flex: 0 0 calc(100% / 3);
+}
+
+/* Last row (no right curve) — line ends at last dot instead of curve */
+.av-timeline > div:last-child .av-timeline__row::before {
+  right: 37.5%;
+}
+
+/* Curved connectors between rows — zero-height, ::before extends into adjacent rows */
+.av-timeline__curve {
+  position: relative;
+  height: 0;
+  z-index: 0;
+}
+
+/* Right curve — connects right end of LTR row above to right end of RTL row below.
+ * Only border-right + large border-radius creates a smooth arc, no stray horizontals. */
+.av-timeline__curve--right {
+  margin-left: calc(100% - 12.5%);
+  width: 12.5%;
+}
+
+.av-timeline__curve--right::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 100%;
+  top: calc(-1 * var(--av-tl-dot-b));
+  bottom: calc(-1 * var(--av-tl-dot-y) - 2px);
+  border: 2px solid var(--av-gradient-to);
+  border-left: none;
+  border-radius: 0 100% 100% 0;
+}
+
+/* Left curve — connects left end of RTL row above to left end of LTR row below. */
+.av-timeline__curve--left {
+  width: 12.5%;
+}
+
+.av-timeline__curve--left::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: calc(-1 * var(--av-tl-dot-b));
+  bottom: calc(-1 * var(--av-tl-dot-y) - 2px);
+  border: 2px solid var(--av-gradient-from);
+  border-right: none;
+  border-radius: 100% 0 0 100%;
+}
+
+/* Last node (Avatars) — gradient title + glow dot */
+.av-timeline__node--last .av-timeline__title {
+  background: var(--av-text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.av-timeline__node--last .av-timeline__dot {
+  width: 14px;
+  height: 14px;
+  box-shadow: 0 0 8px rgba(102, 69, 235, 0.5);
+}
+
+/* Mobile — vertical stack
+ * --av-tl-m-line: distance from left edge of timeline to center of vertical line & dots
+ * padding-left on rows must equal --av-tl-m-line + gap to content */
+@media (max-width: 768px) {
+  .av-timeline {
+    --av-tl-m-line: 0.8rem;
+  }
+
+  .av-timeline__row,
+  .av-timeline__row--rtl {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: calc(var(--av-tl-m-line) + 1rem);
+    padding-right: 0;
+  }
+
+  /* Vertical line — runs full height of row, clipped by timeline container */
+  .av-timeline__row::before {
+    top: 0;
+    bottom: 0;
+    left: calc(var(--av-tl-m-line) - 1px);
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+
+  /* Clip line beyond first/last dots */
+  .av-timeline > div:first-child .av-timeline__row::before {
+    top: 0.8rem;
+  }
+
+  .av-timeline > div:last-child .av-timeline__row::before {
+    bottom: 0.8rem;
+  }
+
+  .av-timeline__node {
+    flex: none;
+    flex-direction: row;
+    text-align: left;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+  }
+
+  /* Dot — centered on the vertical line using translate for any dot size */
+  .av-timeline__dot {
+    order: 0;
+    position: absolute;
+    left: calc(-1rem);
+    margin: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .av-timeline__icon {
+    order: 1;
+    font-size: 1.1rem;
+  }
+
+  .av-timeline__title {
+    order: 2;
+    font-size: 0.85rem;
+  }
+
+  .av-timeline__date {
+    order: 3;
+    margin-top: 0.15rem;
+  }
+
+  .av-timeline__curve {
+    display: none;
+  }
+}
+
+/* Data Center Map — interactive visualization */
+.av-dc-map {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f0eef8;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dark .av-dc-map {
+  background: #0a0a1a;
+  border-color: rgba(175, 174, 198, 0.15);
+}
+
+.av-dc-map svg {
+  display: block;
+}
+
+.av-dc-map circle {
+  transition: r 0.2s ease, fill-opacity 0.2s ease;
+}
+
+.av-dc-map circle:hover {
+  fill-opacity: 1 !important;
+}
+
+.av-dc-tooltip {
+  pointer-events: none;
+  z-index: 100;
+  background: #fff;
+  border: 1px solid rgba(102, 69, 235, 0.3);
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.8rem;
+  color: #4a4960;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  max-width: 280px;
+}
+
+.av-dc-tooltip strong {
+  color: #020817;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.85rem;
+}
+
+.av-dc-tooltip-source {
+  margin-top: 2px;
+  opacity: 0.75;
+  font-size: 0.75rem;
+}
+
+.av-dc-tooltip-note {
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px dashed rgba(102, 69, 235, 0.25);
+  font-size: 0.72rem;
+  font-style: italic;
+  white-space: normal;
+  line-height: 1.35;
+  opacity: 0.85;
+}
+
+.av-dc-info {
+  cursor: help;
+  color: #D445EB;
+  margin-left: 2px;
+  font-style: normal;
+  opacity: 1;
+}
+
+.dark .av-dc-tooltip {
+  background: #0f172a;
+  border-color: rgba(102, 69, 235, 0.4);
+  color: #AFAEC6;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.dark .av-dc-tooltip strong {
+  color: #fff;
+}
+
+.dark .av-dc-tooltip-note {
+  border-top-color: rgba(102, 69, 235, 0.35);
+}
+
+.av-dc-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 0.4rem 1rem 0;
+  flex-wrap: wrap;
+}
+
+.av-dc-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: .875rem;
+  color: #4a4960;
+}
+
+.dark .av-dc-legend-item {
+  color: #AFAEC6;
+}
+
+.av-dc-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.av-dc-caption {
+  text-align: center;
+  font-size: .875rem;
+  color: #4a4960;
+  padding: 0 1rem 1.2rem;
+  margin: 0 !important;
+  line-height: 1.5;
+}
+
+.dark .av-dc-caption {
+  color: #AFAEC6;
+}
+
+.av-dc-caption small {
+  font-size: 0.65rem;
+  color: var(--rp-c-text-3, #5A606C);
+}
+
+/* Outer wrapper */
+.av-dc-wrap {
+  margin: 2rem 0;
+}
+
+/* Toggle toolbar — top-right, above the map */
+.av-dc-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 6px;
+  background: transparent;
+  padding: 0;
+}
+
+.av-dc-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 28px;
+  border: 1px solid rgba(175, 174, 198, 0.2);
+  border-radius: 6px;
+  background: var(--rp-c-bg-soft, #f5f5f5);
+  color: var(--rp-c-text-3, #5A606C);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+
+.av-dc-toggle:hover {
+  color: var(--rp-c-text-1);
+  border-color: rgba(175, 174, 198, 0.4);
+}
+
+.av-dc-toggle--active {
+  color: #fff;
+  background: var(--rp-c-brand, #6645EB);
+  border-color: var(--rp-c-brand, #6645EB);
+}
+
+/* Table view — identical to native Rspress .rp-doc table */
+.av-dc-table-wrap {
+  overflow-x: auto;
+}
+
+.av-dc-table {
+  table-layout: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: var(--rp-code-block-border);
+  border-radius: var(--rp-radius);
+  width: 100%;
+  overflow: hidden;
+}
+
+.av-dc-table thead {
+  color: var(--rp-c-text-0);
+  background: var(--rp-code-title-bg);
+}
+
+.av-dc-table th {
+  text-align: left;
+  border-bottom: 1px solid var(--rp-c-divider-light);
+  padding: .75rem 1.25rem;
+  font-size: .875rem;
+  font-weight: 600;
+}
+
+.av-dc-table td {
+  border-bottom: 1px solid var(--rp-c-divider-light);
+  padding: .75rem 1.25rem;
+  font-size: .875rem;
+  white-space: nowrap;
+}
+
+.av-dc-table tbody tr:hover {
+  background: var(--rp-c-brand-tint);
+}
+
+.av-dc-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.av-dc-table tfoot td {
+  border-bottom: none;
+  font-weight: 600;
+}
+
+.av-dc-dot-inline {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* Sources section */
+.av-dc-sources {
+  padding: 1rem 0 0.5rem;
+  font-size: .875rem;
+  color: var(--rp-c-text-3);
+  margin-top: 1.5rem;
+}
+
+.av-dc-sources strong {
+  color: var(--rp-c-text-1);
+}
+
+.av-dc-sources ul {
+  margin: 0.3rem 0 0.5rem;
+  padding-left: 1.2rem;
+  list-style: disc;
+}
+
+.av-dc-sources li {
+  margin: 0.15rem 0;
+}
+
+.av-dc-sources p {
+  margin: 0.5rem 0 0;
+  line-height: 1.5;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .av-dc-legend {
+    gap: 0.6rem 1rem;
+  }
+
+  .av-dc-tooltip {
+    left: 50% !important;
+    transform: translateX(-50%);
+    top: auto !important;
+    bottom: 1rem;
+    max-width: 90vw;
+  }
+
+  .av-dc-table th,
+  .av-dc-table td {
+    padding: .5rem .75rem;
+    font-size: .8rem;
+  }
+}
+
+/* Calendar toggle — mobile / tablet (mirrors NavScreenLangs pattern) */
+.av-calendar-mobile-wrapper {
+  width: 100%;
+}
+
+.av-calendar-screen {
+  border-radius: var(--rp-radius-small);
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 14px;
+  display: flex;
+  cursor: pointer;
+}
+
+.av-calendar-screen__left {
+  align-items: center;
+  display: flex;
+}
+
+.av-calendar-screen__right {
+  align-items: center;
+  gap: 4px;
+  display: flex;
+}
+
+.av-calendar-screen__icon {
+  transition: transform .3s;
+  transform: rotate(-90deg);
+}
+
+.av-calendar-screen__icon--open {
+  transform: rotate(0);
+}
+
+.av-calendar-screen-group {
+  width: 100%;
+}
+
+.av-calendar-screen-group__inner {
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  font-size: 14px;
+  display: flex;
+  overflow: hidden;
+}
+
+.av-calendar-screen-group__item {
+  padding: 0 24px;
+  cursor: pointer;
+}
+
+.av-calendar-screen-group__item--active {
+  cursor: default;
+  pointer-events: none;
+  background: var(--av-text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+

@@ -1,0 +1,16 @@
+[
+  {
+    "text": "← Back to Home",
+    "link": "https://avatarnity.com"
+  },
+  {
+    "text": "Spec",
+    "link": "/spec/",
+    "activeMatch": "/spec/"
+  },
+  {
+    "text": "Learn",
+    "link": "/learn/getting-started/beginners-guide",
+    "activeMatch": "/learn/"
+  }
+]

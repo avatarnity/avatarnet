@@ -1,0 +1,48 @@
+# Default: auto-detect text vs binary, normalize text to LF in the repo
+# and on checkout (everywhere — Windows editors that save CRLF will be
+# normalized back to LF on the next commit, so the repo never stores CRLF).
+* text=auto eol=lf
+
+# Explicit binary types (never touch line endings)
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.webp  binary
+*.pdf   binary
+*.zip   binary
+*.gz    binary
+*.tar   diff
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.eot   binary
+*.mp4   binary
+*.mov   binary
+*.webm  binary
+*.mp3   binary
+*.wav   binary
+
+# Lockfiles, configs — force LF (some tools choke on CRLF)
+*.json    text eol=lf
+*.yaml    text eol=lf
+*.yml     text eol=lf
+*.lock    text eol=lf
+*.toml    text eol=lf
+
+# Source — force LF
+*.md   text eol=lf
+*.mdx  text eol=lf
+*.ts   text eol=lf
+*.tsx  text eol=lf
+*.js   text eol=lf
+*.jsx  text eol=lf
+*.css  text eol=lf
+*.html text eol=lf
+*.svg  text eol=lf
+*.rs   text eol=lf
+*.sh   text eol=lf
+
+# Symlinks: git stores them as text blobs (mode 120000). Don't munge them.

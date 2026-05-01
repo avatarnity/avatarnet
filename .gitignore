@@ -1,0 +1,34 @@
+# Node / Rspress
+node_modules/
+build/
+doc_build/
+.rspress/
+.temp/
+
+# Rust (when the protocol crate lands)
+target/
+Cargo.lock.bak
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.iml
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+*.tsbuildinfo
