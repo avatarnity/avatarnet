@@ -1,6 +1,7 @@
 /* Avatarnet Brand Theme */
 /* Typography + Colors: avatarnity.com/brand-centre */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@600&family=Noto+Sans+SC:wght@600&family=Noto+Sans+JP:wght@600&family=Noto+Sans+KR:wght@600&family=Noto+Sans+Arabic:wght@600&family=Noto+Sans+Devanagari:wght@600&family=Noto+Sans+Gurmukhi:wght@600&display=swap');
 
 :root {
   /* Typography */
@@ -1237,5 +1238,22 @@ h1, h2, h3, h4, h5, h6,
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Hero subtitle scramble — multi-script font stack */
+.av-hero-scramble {
+  font-family: 'Quicksand', 'Noto Sans', 'Noto Sans SC', 'Noto Sans JP',
+               'Noto Sans KR', 'Noto Sans Arabic', 'Noto Sans Devanagari',
+               'Noto Sans Gurmukhi', sans-serif;
+  font-weight: 600;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Prevent layout collapse and overflow during phrase transitions */
+.rp-home-hero__subtitle {
+  min-height: 1.2em;
+  max-width: 90vw;
+  overflow: hidden;
 }
 

@@ -5,6 +5,7 @@ import { Layout as OriginalLayout } from '@rspress/core/theme-original';
 import { CalendarProvider, useCalendar } from './CalendarContext';
 import { CalendarToggle } from './CalendarToggle';
 import { CalendarToggleMobile } from './CalendarToggleMobile';
+import { HeroScramble } from './HeroScramble';
 
 // Re-export everything from the original theme
 export * from '@rspress/core/theme-original';
@@ -56,6 +57,7 @@ function Layout() {
       <OriginalLayout />
       <CalendarToggle />
       <CalendarToggleMobile />
+      <HeroScramble />
       <AutoDateConverter />
     </CalendarProvider>
   );
