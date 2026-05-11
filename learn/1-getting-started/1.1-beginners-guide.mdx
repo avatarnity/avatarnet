@@ -1,0 +1,91 @@
+---
+title: Introduction
+description: "What Avatarnet is and how it continues humanity's oldest tradition of preserving knowledge"
+---
+
+# Introduction
+
+Since the dawn of humanity, we have tried to preserve our experiences and pass them to the next generation. Each generation has been picking up where the last left off, building on top of it, and passing it to the next. 
+
+This compounding of experiences into knowledge has transformed us from hunter-gatherers into a spacefaring species. Every new medium we invented for experience transfer carried more of who we are than the last.
+
+<Timeline />
+
+However, each medium has tried to solve the same problem: how can we make sure the knowledge being preserved lasts for as long as possible? Avatars are the next step in that chain, a cryptographic identity housed inside a Network Estate on the network, holding an interactive record of everything a person knows. That network is Avatarnet.
+
+## What Avatarnet Is
+
+Avatarnet is a new internet built around people instead of pages.
+
+On today's internet you visit websites. On Avatarnet you visit avatars. Each avatar is a cryptographic identity structured as a browsable wiki that holds a person's mind. There are no centralized servers and no company in the middle, thus no single point of failure.
+
+The ecosystem mirrors the one you already know:
+
+- **Avataroam** is the browser for Avatarnet, the same way Chrome is the browser for the internet. You open a tab, type a `.avtr` address like `einstein.avtr`, and it loads the avatar's mind from the network.
+- **Avatarfind** is the search engine for avatars, the same way Google is the search engine for websites, indexing them across the network so you can discover people, ideas, and knowledge.
+
+Once a mind loads, you can read it the way you read Wikipedia, browsing their writings at your own pace. You can also chat with it. The mind connects to a local or cloud-based AI that answers questions by citing the person's actual writing. The person's words remain exactly as they wrote them, cryptographically verified, forever.
+
+The protocol behind Avatarnet is free and open-source (FOSS). Digital immortality cannot be locked behind proprietary software. Otherwise the whole promise of eternity is broken.
+
+### The Traditional Internet vs Avatarnet
+
+| # | OSI Layer | Traditional Internet | Avatarnet |
+|---|-------|---------------------|-----------|
+| 7 | **Application** | Web Browser (Chrome)<br/>Web Search (Google)<br/>HTTP / HTTPS | Avatar Browser (Avataroam)<br/>Avatar Search (Avatarfind)<br/>CHATP / CHATPS |
+| 6 | **Presentation** | HTML / CSS / JS (executable)<br/>TLS (transport) | JSON + Flutter (data only, UI ships with app)<br/>Noise (transport)<br/>SLH-DSA (*quantum-safe* authorship)<br/>SHA-512 (*quantum-safe* integrity)<br/>AES-256-GCM, ML-KEM-1024 (*quantum-safe* privacy) |
+| 5 | **Session** | Cookies, OAuth (identity)<br/>Server permissions (access) | SLH-DSA (*quantum-safe* identity)<br/>Privacy Spheres (access) |
+| 4 | **Transport** | TCP, UDP | TCP, QUIC (libp2p) |
+| 3 | **Network** | DNS + IP Routing<br/>(.com / .org / .net) | ANS + IP Routing via Kademlia DHT<br/>(.avtr) |
+| 2 | **Data Link** | Ethernet, WiFi | Same |
+| 1 | **Physical** | Cables, Fiber, Radio | Same |
+
+This follows the [OSI model](https://en.wikipedia.org/wiki/OSI_model), the standard framework for describing network layers:
+
+- **Layers 1 and 2** are unchanged because Avatarnet runs on the existing internet infrastructure.
+- **Layers 3 and 4** replace client-server networking with direct connections between devices.
+- **Layers 5 through 7** are fully custom.
+
+Avataroam sits on top as a separate application, the same way Chrome sits on top of HTTP. For a deeper look at the key sizes and encodings behind these layers, see the [Key and Hash Sizes](/learn/cryptography/key-and-hash-sizes).
+
+:::note ⓘ No Executable Code
+Notice what is missing from the Avatarnet column, next to JSON + Flutter? Executable code. On the traditional internet, Chrome fetches HTML, CSS, and JavaScript from the server and executes it. On Avatarnet, all the user interface (UI) code ships with the Avataroam browser. Only your data loads from the network as structured JSON.
+
+**Longevity.** This means the network stores only your words, not UI code. Every website from <HDate g={2005} /> is broken because it depends on Flash, jQuery, or CSS that modern browsers cannot render. Avatarnet avoids this entirely. It may cost aesthetic flexibility, but Avatarnet is not building websites. It is building for eternity.
+
+**Security.** The entire class of browser exploits such as malware, ransomware, cross-site scripting, drive-by downloads, and session hijacking. All of these disappear when you stop running untrusted code. If the browser never executes code from the network, ***there is nothing left to exploit.***
+:::
+
+## What Avatarnet Is Not
+
+### Not a Chatbot Platform
+
+Avatarnet is not a chatbot platform. The avatars on this network are not fictional characters improvised by a language model. They are real people who chose to preserve their knowledge while they are still alive, structured it with their own hands, and signed every word with their own cryptographic key. 
+
+Besides Wiki, Chat is just another way to explore what someone wrote. Regardless of what the AI replies with in Chat, the mind underneath is the source of truth, and every answer traces back to a specific piece of writing the person authored. If someone visits your avatar a hundred years from now, they will be able to read exactly what you wrote and what the AI inferred, because the boundary between authored content and generated response is cryptographically clear.
+
+### Not a Grief-Tech
+
+The technology to build a digital version of you already exists, and it exists in other people's hands. Google has your search history. Meta has your messages. Apple has your photos. Any of them could train a model on your data and call it "you" without ever asking your permission.
+
+The difference between grief-tech and what Avatarnet builds comes down to who holds the pen. Grief-tech is when someone else constructs a version of you after you die, from your digital footprint. Avatarnet is the opposite. You build your own mind, you sign it yourself, and you decide who gets to read it.
+
+:::note ⓘ Countering deception with citation
+A grieving family hires an AI firm to clone a dead relative so the elderly mother never finds out. She video calls her "son" every day without knowing he is gone. No citation, no trace, no way to tell it is fake. The moment you add citations, the illusion breaks. Citation is the difference between deception and transparency.
+:::
+
+:::warning ⚠ Exist first
+With avatar creation technology becoming ubiquitous, there is a real chance someone is going to create an avatar of you without your permission, if not now then maybe after your death. The only defense is to act first before anyone else acts on your behalf and tries to misrepresent you. ***If you alone control your past, no one can control your future.***
+:::
+
+### Not a Blockchain
+
+Avatarnet is also not a blockchain. There are no tokens, no mining, and no transaction fees. The network sustains itself the same way a pension system does. 
+
+In a pension system, you contribute while you are working. The system sustains you after you retire. The next generation of workers funds the previous generation of retirees. It has been working for decades. 
+
+Avatarnet applies the same model to avatar hosting. You contribute storage while you are alive, building your Network Estate on the network through years of hosting labor. The network sustains your avatar after you die. The next generation of users hosts the previous generation of avatars. Storage costs decline 30-40% per decade, making each generation's burden lighter than the last. The full economic model behind this is explained in [Backupism](/learn/getting-started/backupism).
+
+## What Comes Next
+
+The next page [Why It Matters](/learn/getting-started/why-it-matters) explains why all of this matters, with evidence from Big Tech deletion policies, historical purges, and the fragility of the infrastructure your digital life depends on.

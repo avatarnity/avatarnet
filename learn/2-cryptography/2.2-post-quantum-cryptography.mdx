@@ -1,0 +1,134 @@
+---
+title: Post-Quantum Cryptography
+description: 'Why quantum computers threaten current crypto, FIPS standards, and Avatarnet''s 5-algorithm stack'
+---
+
+# Post-Quantum Cryptography
+
+The [Encoding Primer](/learn/cryptography/encoding-primer) showed how binary keys become readable text through Base16, Base64, and Base58. But Avatarnet's keys and signatures are dramatically larger than anything Bitcoin or Signal use today. A 49,856-byte signature where Ed25519 produces 64. A 64-byte public key that encodes to 87 Base58 characters instead of 44. The extra weight is not carelessness. It is the cost of surviving what comes next.
+
+This page explains what that threat is, why every classical signature algorithm has an expiration date, and how Avatarnet chose the five algorithms that replace them.
+
+## The Classical World
+
+For the past two decades, nearly every secure system on the internet has relied on a small family of algorithms built on elliptic curve mathematics. Ed25519, the signature scheme used by SSH, Signal, Tor, and Solana, produces a 64-byte signature in 0.05 milliseconds. ECDSA on the secp256k1 curve, the algorithm behind Bitcoin and Ethereum, is slightly slower but equally compact. Both are elegant, battle-tested, and trusted by billions of devices.
+
+Their security rests on a single mathematical assumption: that deriving a private key from a public key is computationally infeasible for any classical computer. The specific problem is called the Elliptic Curve Discrete Logarithm Problem, and no classical algorithm has ever solved it faster than brute force. A conventional computer would need longer than the age of the universe to reverse-engineer an elliptic curve private key from its public counterpart.
+
+That assumption held for decades. It will not hold forever.
+
+## Why Classical Cryptography Dies
+
+In 1994, mathematician Peter Shor published an algorithm that solves the Elliptic Curve Discrete Logarithm Problem exponentially faster than any classical approach. The catch was that it requires a quantum computer, a machine that did not exist in any practical form at the time. For thirty years, that catch was enough. Quantum hardware was too fragile, too error-prone, and too small to run Shor's algorithm on real cryptographic keys. That gap is now closing.
+
+On March 31, <HDate g={2026} />, Google Quantum AI published a paper demonstrating that breaking the elliptic curve cryptography protecting Bitcoin, Ethereum, and most major cryptocurrencies could require fewer than 500,000 physical qubits on a superconducting quantum computer. That estimate is roughly twenty times lower than prior research had suggested. The paper carries serious institutional weight: its co-authors include Justin Drake of the Ethereum Foundation, Dan Boneh of Stanford, and six Google Quantum AI researchers. Google says it engaged with the United States government before publishing.
+
+No quantum computer can execute this attack today. Google's most advanced chip, Willow, has 105 qubits. But the distance between current hardware and a machine capable of cracking elliptic curve cryptography is shrinking faster than projected. The paper estimates that a superconducting quantum computer could complete the attack in approximately nine minutes, using a technique where the machine precomputes half the algorithm and waits in a primed state until a target appears.
+
+Every system that relies on elliptic curve cryptography now has a visible horizon, because Ed25519, ECDSA, and RSA are all vulnerable to Shor's algorithm. It is not a question of whether they will be broken, but when.
+
+## The NIST Response
+
+The National Institute of Standards and Technology saw this coming. In <HDate g={2016} />, NIST launched a public competition to identify post-quantum cryptographic algorithms, algorithms whose security does not depend on the mathematical problems that quantum computers can solve. The process ran for eight years, evaluated dozens of submissions, and concluded in August <HDate g={2024} /> with the release of three new Federal Information Processing Standards.
+
+### What FIPS means
+
+A FIPS standard is a United States federal standard for information processing. When NIST publishes a FIPS, it becomes the benchmark that government agencies, defence contractors, and critical infrastructure providers are required to follow. In practice, FIPS standards define what the world considers trustworthy cryptography. When your bank says its encryption is "government grade," it means FIPS.
+
+### The five quantum-safe FIPS standards
+
+Three new post-quantum standards were published in <HDate g={2024} /> to replace the classical algorithms that Shor's algorithm threatens. They join two existing standards that are already quantum-safe:
+
+| FIPS | NIST Name | Year | Type | Purpose |
+|------|-----------|------|------|---------|
+| FIPS 205 | SLH-DSA | <HDate g={2024} /> | Digital signature | Hash-based signing, most conservative |
+| FIPS 204 | ML-DSA | <HDate g={2024} /> | Digital signature | Fast, lattice-based signing |
+| FIPS 203 | ML-KEM | <HDate g={2024} /> | Key encapsulation | Two parties agree on a shared secret |
+| FIPS 180-4 | SHA-2 | <HDate g={2015} /> | Hash function | Produces fixed-size fingerprints of data |
+| FIPS 197 | AES | <HDate g={2001} /> | Symmetric encryption | Encrypts data with a shared key |
+
+### The old names
+
+NIST renamed all three post-quantum algorithms when the final standards were published. The original competition names still appear in older documentation and some software libraries:
+
+| FIPS | NIST Name | Old Name |
+|------|-----------|----------|
+| FIPS 205 | SLH-DSA | SPHINCS+-256 |
+| FIPS 204 | ML-DSA | Dilithium |
+| FIPS 203 | ML-KEM | Kyber |
+
+SHA-2 and AES survive quantum computers because the best known quantum attack against them, Grover's algorithm, only provides a square-root speedup rather than an exponential one. A 512-bit SHA-2 hash retains 256-bit security against quantum search, and a 256-bit AES key retains 128-bit security. Both remain far beyond the reach of any foreseeable machine.
+
+### The deprecation timeline
+
+NIST has published a clear schedule for the algorithms that quantum computers will break:
+
+| Date | Action |
+|------|--------|
+| <HDate g={2024} /> | FIPS 203, 204, 205 standards released |
+| Now | Begin migration to post-quantum algorithms |
+| <HDate g={2030} /> | Quantum-vulnerable algorithms deprecated |
+| <HDate g={2035} /> | Quantum-vulnerable algorithms disallowed |
+
+JPMorgan, Wells Fargo, AWS, Google, Microsoft, IBM, Cloudflare, the NSA, CISA, Verizon, and dozens of other organizations are actively working on post-quantum migration. Google has set <HDate g={2029} /> as its internal deadline for migrating authentication services. The National Security Agency's CNSA 2.0 framework calls for quantum-safe systems by <HDate g={2030} />.
+
+An Ed25519 identity created today has at most a nine-year shelf life before NIST disallows the algorithm it depends on. For a system designed to last decades, let alone centuries, that is not a foundation anyone should build on.
+
+## Avatarnet's Five-Algorithm Stack
+
+Avatarnet does not migrate. It starts quantum-safe. Every algorithm in the protocol is either a post-quantum NIST standard or an existing standard that already survives quantum computers. There are five algorithms in total, and each one maps to a specific cryptographic job.
+
+| FIPS | Algorithm | Purpose | Quantum Security |
+|------|-----------|---------|-----------------|
+| FIPS 205 | SLH-DSA-SHA2-256f | All signatures | 128-bit (Level 5) |
+| FIPS 203 | ML-KEM-1024 | Key encapsulation | 128-bit (Level 5) |
+| FIPS 180-4 | SHA-512 | Content addressing | 256-bit |
+| FIPS 197 | AES-256-GCM | Symmetric encryption | 128-bit |
+| RFC 9106 | Argon2id | Key derivation | Brute-force resistant |
+
+NIST Level 5 is the highest security category that NIST defines, equivalent to the difficulty of brute-forcing a 256-bit AES key. After Grover's algorithm halves it, the result is 128-bit quantum security. To break 128-bit quantum security, an attacker would need the mass of the sun converted entirely to compute, running until the heat death of the universe. There is no practical difference between 128-bit quantum security and mathematical impossibility.
+
+SHA-512 is the only component with 256-bit quantum security, because its 512-bit output is halved to 256 bits by Grover's algorithm. Content addresses are permanent, they cannot be upgraded later because the hash is the address itself, so Avatarnet uses the maximum available margin here.
+
+### Why SLH-DSA, not ML-DSA
+
+NIST published two signature standards: ML-DSA (FIPS 204) and SLH-DSA (FIPS 205). Most systems will choose ML-DSA because it is dramatically faster, signing in under 5 milliseconds compared to SLH-DSA's 205 milliseconds, and its signatures are roughly ten times smaller. Avatarnet chose SLH-DSA for a reason that outweighs both speed and size: it has fewer ways to fail.
+
+ML-DSA's security depends on two assumptions: that the underlying lattice mathematics (Module-LWE) is hard, and that the hash functions it uses internally are sound. If either assumption breaks, ML-DSA breaks with it.
+
+SLH-DSA's security depends on one assumption: that hash functions are one-way. It is built entirely from hash operations, with no algebraic structure that a future mathematical breakthrough could exploit. If hash functions break, every algorithm in cryptography breaks simultaneously, because hash functions are the foundation on which all modern security is built. That is not a realistic scenario. SHA-2 has survived 24 years of cryptanalysis with no practical attack.
+
+The tradeoff is real. SLH-DSA-SHA2-256f produces 49,856-byte signatures and takes 205 milliseconds to sign. ML-DSA-87 produces 4,627-byte signatures and signs in under 5 milliseconds. For a system that publishes commits one at a time and verifies signatures in 5 milliseconds on read, the signing cost is acceptable. For a system that needs to last centuries, the extra safety margin is not optional.
+
+| Algorithm | Based on | Sign time | Signature size | What breaks it |
+|-----------|----------|-----------|----------------|---------------|
+| SLH-DSA-SHA2-256f | Hash functions | 205 ms | 49,856 bytes | SHA itself (everything dies) |
+| ML-DSA-87 | Lattice math + hashing | 4.4 ms | 4,627 bytes | Lattice breakthrough or SHA |
+
+SLH-DSA has one fewer failure mode. When you are building for eternity, that is the deciding factor.
+
+### Why SHA-2, not SHAKE
+
+SLH-DSA is available in two internal hash families: SHA-2 (FIPS 180-4) and SHAKE (SHA-3/Keccak). Both provide identical security at equivalent parameter levels. NIST's own FIPS 205 specification confirms that neither is stronger than the other.
+
+Avatarnet chose SHA-2 for performance. SHA-2 benefits from hardware acceleration on virtually every modern processor through Intel's SHA-NI instruction set and ARM's SHA-2 instructions. On benchmarked hardware, SLH-DSA-SHA2-256f signs in 205 milliseconds while SLH-DSA-SHAKE-256f signs in 314 milliseconds, a 1.5x speed difference that comes entirely from hardware support. SHA-2 also has a longer track record, with 24 years of cryptanalysis compared to SHA-3's 11 years.
+
+### Why 256f, not 256s
+
+FIPS 205 defines two variants at each security level: "s" for small signatures and "f" for fast signing. Both provide identical security. The difference is a direct trade between signature size and signing speed:
+
+| Variant | Sign time | Signature size |
+|---------|-----------|---------------|
+| SLH-DSA-SHA2-256s | 1,920 ms | 29,792 bytes |
+| SLH-DSA-SHA2-256f | 205 ms | 49,856 bytes |
+
+The "s" variant produces signatures that are 40 percent smaller, but signing takes nearly ten times longer. At 1.9 seconds per signature, publishing a commit would introduce a delay that users notice and resent. At 205 milliseconds, the delay is perceptible but acceptable for a per-commit operation. The extra 20 kilobytes per signature is negligible for a system that signs once per commit, no matter how many engrams the commit contains.
+
+## How the Stack Maps to the Protocol
+
+Every algorithm in this stack exists to uphold one of the Five Pillars introduced on the [Avatar and Mind](/learn/getting-started/avatar-and-mind) page. SLH-DSA protects Estate Ownership, Avatar Identity, and Mind Authorship. SHA-512 protects Mind Integrity. AES-256-GCM and ML-KEM-1024 together protect Mind Privacy. Argon2id sits behind the scenes, turning your password into a cryptographic key that protects the private key on your device.
+
+---
+
+With the threat understood and the algorithms chosen, the next step is to see exactly how large these post-quantum keys and signatures are, and how they map to each of the Five Pillars. That is the subject of [Key and Hash Sizes](/learn/cryptography/key-and-hash-sizes).
+

@@ -1,0 +1,32 @@
+[
+  {
+    "type": "dir",
+    "name": "getting-started",
+    "label": "Getting Started"
+  },
+  {
+    "type": "dir",
+    "name": "cryptography",
+    "label": "Cryptography"
+  },
+  {
+    "type": "dir",
+    "name": "concepts",
+    "label": "Concepts"
+  },
+  {
+    "type": "dir",
+    "name": "network",
+    "label": "Network"
+  },
+  {
+    "type": "dir",
+    "name": "economics",
+    "label": "Economics"
+  },
+  {
+    "type": "dir",
+    "name": "reference",
+    "label": "Reference"
+  }
+]
