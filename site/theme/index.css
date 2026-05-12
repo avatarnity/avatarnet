@@ -494,12 +494,14 @@ h1, h2, h3, h4, h5, h6,
 }
 
 
-/* Note callout — Electric Magenta bar + title */
-.rp-callout--note .rp-callout__title {
+/* Note callout — Electric Magenta bar + title.
+   html prefix bumps specificity so the bundler does not dedupe these against
+   rspress's defaults (which share the bare selector and would otherwise win). */
+html .rp-callout--note .rp-callout__title {
   color: var(--rp-c-brand) !important;
 }
 
-.rp-callout--note .rp-callout__title:before {
+html .rp-callout--note .rp-callout__title:before {
   background-color: var(--rp-c-brand) !important;
 }
 
